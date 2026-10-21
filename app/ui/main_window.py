@@ -1,4 +1,4 @@
-"""SlideBridge main window and conversion workflow."""
+"""DeckForge main window and conversion workflow."""
 
 from __future__ import annotations
 
@@ -64,7 +64,7 @@ class LogoMark(QWidget):
         font = QFont("Segoe UI", 20)
         font.setBold(True)
         painter.setFont(font)
-        painter.drawText(self.rect(), Qt.AlignmentFlag.AlignCenter, "S")
+        painter.drawText(self.rect(), Qt.AlignmentFlag.AlignCenter, "D")
         painter.end()
 
 
@@ -207,12 +207,12 @@ class FileCard(QFrame):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("SlideBridge — PDF to PowerPoint")
+        self.setWindowTitle("DeckForge — PDF to PowerPoint")
         self.resize(1000, 900)
         self.setMinimumSize(820, 680)
         self.setAcceptDrops(True)
 
-        self._settings = QSettings("SlideBridge", "SlideBridge")
+        self._settings = QSettings("DeckForge", "DeckForge")
         self._pdf_path: Optional[Path] = None
         self._password: Optional[str] = None
         self._info: Optional[PDFInfo] = None

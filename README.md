@@ -1,15 +1,15 @@
-# SlideBridge — PDF to PowerPoint Converter
+# DeckForge — PDF to PowerPoint Converter
 
 PDF 문서를 PowerPoint(`.pptx`)로 변환하는 Windows 데스크톱 프로그램입니다.
 원본 디자인을 그대로 살리는 **원본 보존 모드**를 기본으로 제공하고, 텍스트와
 이미지를 개별 객체로 재구성하는 **편집 가능 모드**를 선택할 수 있습니다.
 
-![SlideBridge 메인 화면](docs/screenshot.png)
+![DeckForge 메인 화면](docs/screenshot.png)
 
-> **Windows 실행 파일 다운로드:** <https://github.com/kaiytr/pdf_to_pptx/releases/latest/download/SlideBridge.exe>
-> — 단일 `.exe`, Python 설치 불필요, 약 75MB
+> **Windows 실행 파일 다운로드:** <https://github.com/kaiytr/pdf_to_pptx/releases/latest/download/DeckForge.exe>
+> — 단일 `.exe`, Python 설치 불필요, 약 75MB · v1.1.0
 >
-> SHA-256: `13CF2CD9A5B7F531EDC489B316088D9BAE1DE350F2455EAAD959C4AFB43AD543`
+> SHA-256: `59B52850779FC9B4B2733656F384DBCB502F84475277DF9D6F652677DF91B6F2`
 >
 > 웹 소개 페이지: <https://kaiytr.github.io/pdf_to_pptx/>
 
@@ -78,7 +78,7 @@ PDF 문서를 PowerPoint(`.pptx`)로 변환하는 Windows 데스크톱 프로그
 
 ### 3.1 실행 파일로 실행 (권장)
 
-[Windows용 SlideBridge.exe 다운로드](https://github.com/kaiytr/pdf_to_pptx/releases/latest/download/SlideBridge.exe)
+[Windows용 DeckForge.exe 다운로드](https://github.com/kaiytr/pdf_to_pptx/releases/latest/download/DeckForge.exe)
 
 - 단일 `.exe` 파일이며 Python 설치가 필요 없습니다.
 - Windows 10/11 64비트에서 실행하세요.
@@ -273,7 +273,7 @@ python scripts/create_samples.py
 | `03_tables_shapes.pdf` | 표와 사각형/선이 많은 페이지 |
 | `04_landscape.pdf` | 가로형 2페이지 |
 | `05_many_pages.pdf` | 20페이지 진행률/범위 테스트 |
-| `06_encrypted.pdf` | 암호 PDF (암호: `slidebridge`) |
+| `06_encrypted.pdf` | 암호 PDF (암호: `deckforge`) |
 | `07_large_image.pdf` | 3600×2400 이미지 포함 |
 
 ### 6.3 수동 확인 결과
@@ -283,8 +283,8 @@ python scripts/create_samples.py
 - 암호 PDF에 암호를 입력해 변환 성공
 - 20페이지 샘플의 `1-5` 범위 변환 → 5장 생성
 - UI에서 파일 로드, 설정 변경, 변환, 완료 화면, 취소, 미리보기 동작 확인
-- 취소 시 출력 파일과 `.slidebridge_*.pptx` 임시 파일이 남지 않음
-- PyInstaller 단일 실행 파일(`dist\SlideBridge.exe`, 약 75MB) 빌드 및 실행 확인
+- 취소 시 출력 파일과 `.deckforge_*.pptx` 임시 파일이 남지 않음
+- PyInstaller 단일 실행 파일(`dist\DeckForge.exe`, 약 75MB) 빌드 및 실행 확인
 - 패키징 환경과 동일한 구성으로 PDF → PPTX 변환 스모크 테스트 통과
 
 **미검증 항목**
@@ -343,7 +343,7 @@ PDF는 시각적 표현을 저장하고 PPTX는 개별 객체를 저장하므로
 ```
 
 - 가상환경과 개발 의존성(`requirements-dev.txt`)이 필요합니다.
-- 결과물: `dist\SlideBridge.exe` (단일 실행 파일)
+- 결과물: `dist\DeckForge.exe` (단일 실행 파일)
 - PyMuPDF 리소스와 python-pptx 기본 템플릿을 함께 수집합니다.
 - 빌드된 exe는 개발 PC에서 실행을 확인했고, 동일한 PyInstaller 구성의
   변환 스모크 테스트도 통과했습니다.
@@ -363,7 +363,7 @@ PDF는 시각적 표현을 저장하고 PPTX는 개별 객체를 저장하므로
 | 저장 실패 | PowerPoint에서 같은 파일을 열고 있지 않은지, 폴더 쓰기 권한 확인 |
 | 한글이 다르게 보임 | 대상 PC에 원본 글꼴 설치 또는 PowerPoint 글꼴 대체 확인 |
 | 변환 결과가 다름 | 편집 가능 모드의 한계(7.1) 확인. 원본 보존 모드 사용 권장 |
-| 로그 확인 | `%LOCALAPPDATA%\SlideBridge\slidebridge.log` |
+| 로그 확인 | `%LOCALAPPDATA%\DeckForge\deckforge.log` |
 
 ---
 

@@ -93,7 +93,7 @@ def test_original_mode_creates_one_slide_per_page(sample_pdf: Path, tmp_path: Pa
     assert presentation.slide_width / presentation.slide_height == pytest.approx(
         A4_RATIO, rel=1e-3
     )
-    assert not list(tmp_path.glob(".slidebridge_*.pptx"))
+    assert not list(tmp_path.glob(".deckforge_*.pptx"))
 
 
 def test_original_mode_widescreen(sample_pdf: Path, tmp_path: Path):
@@ -124,8 +124,8 @@ def test_editable_mode_builds_text_images_and_shapes(sample_pdf: Path, tmp_path:
     presentation = Presentation(str(output))
     texts = _slide_texts(presentation)
     joined = "\n".join(texts)
-    assert "SlideBridge Test Page 1" in joined
-    assert "SlideBridge Test Page 2" in joined
+    assert "DeckForge Test Page 1" in joined
+    assert "DeckForge Test Page 2" in joined
     assert "한글 텍스트 테스트" in joined
     assert "Editable text extraction test." in joined
 
@@ -172,8 +172,8 @@ def test_page_range_and_order(sample_pdf: Path, tmp_path: Path):
         for shape in presentation.slides[1].shapes
         if shape.has_text_frame
     )
-    assert "SlideBridge Test Page 3" in first_texts
-    assert "SlideBridge Test Page 1" in second_texts
+    assert "DeckForge Test Page 3" in first_texts
+    assert "DeckForge Test Page 1" in second_texts
 
 
 def test_progress_is_monotonic_and_completes(sample_pdf: Path, tmp_path: Path):
@@ -202,7 +202,7 @@ def test_cancellation_before_start_leaves_no_output(sample_pdf: Path, tmp_path: 
     with pytest.raises(ConversionCancelled):
         _convert(sample_pdf, output, cancel_event=cancel_event)
     assert not output.exists()
-    assert not list(tmp_path.glob(".slidebridge_*.pptx"))
+    assert not list(tmp_path.glob(".deckforge_*.pptx"))
 
 
 def test_invalid_page_range_fails_cleanly(sample_pdf: Path, tmp_path: Path):
@@ -330,9 +330,9 @@ def test_partial_page_failure_removes_partial_slide(
     presentation = Presentation(str(output))
     assert len(presentation.slides) == 2
     joined = "\n".join(_slide_texts(presentation))
-    assert "SlideBridge Test Page 1" in joined
-    assert "SlideBridge Test Page 3" in joined
-    assert "SlideBridge Test Page 2" not in joined
+    assert "DeckForge Test Page 1" in joined
+    assert "DeckForge Test Page 3" in joined
+    assert "DeckForge Test Page 2" not in joined
 
 
 def test_existing_output_is_overwritten(sample_pdf: Path, tmp_path: Path):
@@ -341,7 +341,7 @@ def test_existing_output_is_overwritten(sample_pdf: Path, tmp_path: Path):
     result = _convert(sample_pdf, output, page_range="1")
     assert result.converted_pages == 1
     validate_pptx(output, expected_slides=1)
-    assert not list(tmp_path.glob(".slidebridge_*.pptx"))
+    assert not list(tmp_path.glob(".deckforge_*.pptx"))
 
 
 def test_validation_failure_cleans_temporary_file(
@@ -357,7 +357,7 @@ def test_validation_failure_cleans_temporary_file(
     with pytest.raises(AppError):
         _convert(sample_pdf, output, page_range="1")
     assert not output.exists()
-    assert not list(tmp_path.glob(".slidebridge_*.pptx"))
+    assert not list(tmp_path.glob(".deckforge_*.pptx"))
 
 
 @pytest.mark.parametrize(

@@ -1,1 +1,1 @@
-"""Data models used across SlideBridge."""
+"""Data models used across DeckForge."""

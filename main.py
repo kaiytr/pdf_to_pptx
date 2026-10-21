@@ -1,4 +1,4 @@
-"""SlideBridge application entry point."""
+"""DeckForge application entry point."""
 
 from __future__ import annotations
 
@@ -28,22 +28,22 @@ def create_app_icon() -> QIcon:
     font = QFont("Segoe UI", 120)
     font.setBold(True)
     painter.setFont(font)
-    painter.drawText(pixmap.rect(), Qt.AlignmentFlag.AlignCenter, "S")
+    painter.drawText(pixmap.rect(), Qt.AlignmentFlag.AlignCenter, "D")
     painter.end()
     return QIcon(pixmap)
 
 
 def _log_path() -> Path:
-    base = Path.home() / "AppData" / "Local" / "SlideBridge"
+    base = Path.home() / "AppData" / "Local" / "DeckForge"
     try:
         base.mkdir(parents=True, exist_ok=True)
     except OSError:
         base = Path.home()
-    return base / "slidebridge.log"
+    return base / "deckforge.log"
 
 
 def _install_exception_hook() -> None:
-    logger = logging.getLogger("slidebridge")
+    logger = logging.getLogger("deckforge")
     logger.setLevel(logging.ERROR)
     try:
         handler = logging.FileHandler(_log_path(), encoding="utf-8")
@@ -76,16 +76,16 @@ def main() -> int:
     if sys.platform == "win32":
         try:
             ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
-                "SlideBridge.PDFToPPTX.1"
+                "DeckForge.PDFToPPTX.1"
             )
         except Exception:
             pass
 
     _install_exception_hook()
     app = QApplication(sys.argv)
-    app.setApplicationName("SlideBridge")
-    app.setApplicationDisplayName("SlideBridge")
-    app.setOrganizationName("SlideBridge")
+    app.setApplicationName("DeckForge")
+    app.setApplicationDisplayName("DeckForge")
+    app.setOrganizationName("DeckForge")
     app.setStyle("Fusion")
     app.setStyleSheet(APP_STYLE)
     app.setWindowIcon(create_app_icon())

@@ -17,7 +17,7 @@ def _make_image(path: Path) -> Path:
     image = Image.new("RGB", (240, 120), (222, 235, 255))
     draw = ImageDraw.Draw(image)
     draw.rectangle((6, 6, 233, 113), outline=(37, 99, 235), width=4)
-    draw.text((24, 50), "SlideBridge", fill=(15, 23, 42))
+    draw.text((24, 50), "DeckForge", fill=(15, 23, 42))
     image.save(path)
     return path
 
@@ -35,7 +35,7 @@ def sample_pdf(tmp_path_factory) -> Path:
         page = doc.new_page(width=595, height=842)
         page.insert_text(
             (60, 90),
-            f"SlideBridge Test Page {number}",
+            f"DeckForge Test Page {number}",
             fontsize=26,
             color=(0.1, 0.2, 0.5),
         )
@@ -63,7 +63,7 @@ def sample_pdf(tmp_path_factory) -> Path:
                 fill=(0.85, 0.96, 0.9),
                 width=2,
             )
-    doc.set_metadata({"title": "SlideBridge Sample", "author": "Tests"})
+    doc.set_metadata({"title": "DeckForge Sample", "author": "Tests"})
     doc.save(str(path))
     doc.close()
     return path

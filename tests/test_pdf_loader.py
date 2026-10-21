@@ -22,7 +22,7 @@ def test_loads_valid_pdf(sample_pdf: Path):
     assert info.file_size > 0
     assert info.first_page_size.width == pytest.approx(595, abs=1)
     assert info.first_page_size.height == pytest.approx(842, abs=1)
-    assert info.title == "SlideBridge Sample"
+    assert info.title == "DeckForge Sample"
     assert info.has_mixed_page_sizes is False
 
 
@@ -30,7 +30,7 @@ def test_open_pdf_returns_readable_document(sample_pdf: Path):
     doc = open_pdf(sample_pdf)
     try:
         assert doc.page_count == 3
-        assert "SlideBridge Test Page 1" in doc.load_page(0).get_text()
+        assert "DeckForge Test Page 1" in doc.load_page(0).get_text()
     finally:
         doc.close()
 

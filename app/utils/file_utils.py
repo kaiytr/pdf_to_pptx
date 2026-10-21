@@ -42,7 +42,7 @@ def can_write_directory(directory: Path) -> Tuple[bool, str]:
     if not directory.is_dir():
         return False, "저장 위치가 폴더가 아닙니다."
     try:
-        fd, probe = tempfile.mkstemp(prefix=".slidebridge_", suffix=".tmp", dir=str(directory))
+        fd, probe = tempfile.mkstemp(prefix=".deckforge_", suffix=".tmp", dir=str(directory))
         os.close(fd)
         os.unlink(probe)
     except OSError as exc:

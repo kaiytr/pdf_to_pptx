@@ -96,7 +96,7 @@ class ConversionService:
         check_cancelled()
 
         doc = open_pdf(source_path, password)
-        temp_path = output_path.parent / f".slidebridge_{uuid.uuid4().hex}.pptx"
+        temp_path = output_path.parent / f".deckforge_{uuid.uuid4().hex}.pptx"
         try:
             total_pages = doc.page_count
             try:

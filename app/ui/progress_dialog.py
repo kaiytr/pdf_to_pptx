@@ -157,7 +157,7 @@ class PreviewDialog(QDialog):
 
     def __init__(self, pdf_path: Path, password: Optional[str] = None, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("원본 PDF 미리보기 — SlideBridge")
+        self.setWindowTitle("원본 PDF 미리보기 — DeckForge")
         self.resize(900, 720)
         self._pdf_path = Path(pdf_path)
         self._password = password

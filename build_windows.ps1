@@ -20,12 +20,12 @@ if ($LASTEXITCODE -ne 0) { throw "Dependency installation failed." }
     --clean `
     --onefile `
     --windowed `
-    --name SlideBridge `
+    --name DeckForge `
     --collect-all pymupdf `
     --collect-data pptx `
     main.py
 if ($LASTEXITCODE -ne 0) { throw "PyInstaller build failed." }
 
 Write-Host ""
-Write-Host "Build complete: $root\dist\SlideBridge.exe"
+Write-Host "Build complete: $root\dist\DeckForge.exe"
 Write-Host "Test the executable on a clean Windows machine before distribution."

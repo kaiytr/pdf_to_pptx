@@ -4,7 +4,7 @@ Run from the project root:
 
     python scripts/create_samples.py
 
-The encrypted sample uses the user password ``slidebridge``.
+The encrypted sample uses the user password ``deckforge``.
 """
 
 from __future__ import annotations
@@ -17,7 +17,7 @@ from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLES = ROOT / "samples"
-PASSWORD = "slidebridge"
+PASSWORD = "deckforge"
 
 
 def _gradient_image(width: int, height: int, top: tuple, bottom: tuple) -> bytes:
@@ -37,7 +37,7 @@ def _gradient_image(width: int, height: int, top: tuple, bottom: tuple) -> bytes
     )
     draw.text(
         (width * 0.16, height * 0.46),
-        "SlideBridge sample image",
+        "DeckForge sample image",
         fill=(255, 255, 255),
     )
     output = io.BytesIO()
@@ -87,7 +87,7 @@ def text_only(path: Path) -> None:
     for number in (1, 2):
         page = doc.new_page(width=595, height=842)
         page.insert_text(
-            (60, 100), "SlideBridge text document", fontsize=26, color=(0.1, 0.2, 0.5)
+            (60, 100), "DeckForge text document", fontsize=26, color=(0.1, 0.2, 0.5)
         )
         page.insert_text(
             (60, 135), "PDF to PowerPoint conversion test", fontsize=14, color=(0.25, 0.3, 0.4)
@@ -296,13 +296,13 @@ def encrypted(path: Path) -> None:
     page.insert_text((60, 100), "Encrypted sample", fontsize=26, color=(0.1, 0.2, 0.5))
     page.insert_text(
         (60, 140),
-        "암호가 설정된 PDF입니다. 암호: slidebridge",
+        "암호가 설정된 PDF입니다. 암호: deckforge",
         fontname="korea",
         fontsize=14,
     )
     page.insert_textbox(
         fitz.Rect(60, 190, 530, 330),
-        "SlideBridge asks for the password before conversion. The original file is "
+        "DeckForge asks for the password before conversion. The original file is "
         "never modified. This sample has a user password and restricted permissions.",
         fontsize=12,
         lineheight=1.5,
@@ -310,7 +310,7 @@ def encrypted(path: Path) -> None:
     doc.save(
         str(path),
         encryption=fitz.PDF_ENCRYPT_AES_256,
-        owner_pw="owner-slidebridge",
+        owner_pw="owner-deckforge",
         user_pw=PASSWORD,
         permissions=fitz.PDF_PERM_ACCESSIBILITY | fitz.PDF_PERM_PRINT,
     )
