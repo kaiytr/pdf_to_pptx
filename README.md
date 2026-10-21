@@ -9,6 +9,8 @@ PDF 문서를 PowerPoint(`.pptx`)로 변환하는 Windows 데스크톱 프로그
 > **Windows 실행 파일 다운로드:** <https://github.com/kaiytr/pdf_to_pptx/releases/latest/download/SlideBridge.exe>
 > — 단일 `.exe`, Python 설치 불필요, 약 75MB
 >
+> SHA-256: `13CF2CD9A5B7F531EDC489B316088D9BAE1DE350F2455EAAD959C4AFB43AD543`
+>
 > 웹 소개 페이지: <https://kaiytr.github.io/pdf_to_pptx/>
 
 ---
