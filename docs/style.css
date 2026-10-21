@@ -224,7 +224,43 @@ h1 {
 }
 .install-actions { margin-bottom: 12px; }
 .install-actions .button { margin-top: 0; }
-.install-grid .download-note { margin-bottom: 0; }
+.install-grid .download-note { margin-bottom: 18px; }
+
+.install-steps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.install-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+.install-steps .step-num {
+  display: grid;
+  flex: 0 0 22px;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.install-steps strong { color: var(--text); }
+.install-steps code {
+  padding: 1px 5px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+}
 
 .button {
   display: inline-flex;

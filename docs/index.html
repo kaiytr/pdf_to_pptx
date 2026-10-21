@@ -201,20 +201,28 @@
       <div class="container install-grid">
         <div>
           <p class="eyebrow">Getting started</p>
-          <h2>지금 실행해 보세요.</h2>
+          <h2>설치하고 바로 실행하세요.</h2>
           <p class="muted">
-            Python 없이 실행하려면 Windows용 단일 실행 파일을 다운로드하세요.
-            소스에서 실행하려면 Python 3.11 이상이 필요합니다.
+            아래 버튼에서 <strong>SlideBridge.exe</strong>를 내려받아 더블클릭하면 됩니다.
+            Python 설치 없이 실행되며, 소스에서 실행하려면 오른쪽 명령을 사용하세요.
           </p>
           <div class="hero-actions install-actions">
             <a class="button primary" href="https://github.com/kaiytr/pdf_to_pptx/releases/latest/download/SlideBridge.exe">
-              Windows용 다운로드
+              설치 파일 다운로드 <span aria-hidden="true">↓</span>
             </a>
             <a class="button ghost" href="https://github.com/kaiytr/pdf_to_pptx" target="_blank" rel="noreferrer">
               소스 코드
             </a>
           </div>
-          <p class="download-note">서명되지 않은 실행 파일이라 Windows SmartScreen 경고가 표시될 수 있습니다.</p>
+          <p class="download-note">
+            v1.0.0 · 약 75MB · <a href="https://github.com/kaiytr/pdf_to_pptx/releases/tag/v1.0.0">릴리스 노트</a><br>
+            서명되지 않은 실행 파일이라 Windows SmartScreen 경고가 표시될 수 있습니다.
+          </p>
+          <ol class="install-steps" aria-label="설치 순서">
+            <li><span class="step-num">1</span><div><strong>다운로드</strong> — <code>SlideBridge.exe</code> 저장</div></li>
+            <li><span class="step-num">2</span><div><strong>실행</strong> — 다운로드한 파일 더블클릭</div></li>
+            <li><span class="step-num">3</span><div><strong>경고 시</strong> — 추가 정보 → 실행 선택</div></li>
+          </ol>
         </div>
         <div class="code-card">
           <div class="code-head"><span>소스에서 실행 — PowerShell</span><span class="code-dots" aria-hidden="true">● ● ●</span></div>
@@ -249,6 +257,7 @@ py -3.11 -m venv .venv
               <li>회전 페이지, 페이지 크기 혼합, 암호 PDF 처리</li>
               <li>취소·부분 실패·임시 파일 정리</li>
               <li>실제 Windows Qt 환경에서 GUI 실행·변환 확인</li>
+              <li>단일 Windows exe 빌드·실행 및 패키징 변환 스모크 테스트</li>
             </ul>
           </article>
           <article class="status-card warn">
@@ -256,7 +265,7 @@ py -3.11 -m venv .venv
             <ul>
               <li>Microsoft PowerPoint/LibreOffice에서의 실제 렌더링</li>
               <li>원본 PDF와 결과 PPTX의 픽셀 단위 비교</li>
-              <li>PyInstaller 실행 파일 빌드 및 클린 PC 실행</li>
+              <li>다른 클린 PC에서의 실행 및 SmartScreen 동작</li>
               <li>5,000페이지급 초대형 문서 실측</li>
             </ul>
             <p class="status-note">
