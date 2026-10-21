@@ -6,6 +6,9 @@ PDF 문서를 PowerPoint(`.pptx`)로 변환하는 Windows 데스크톱 프로그
 
 ![SlideBridge 메인 화면](docs/screenshot.png)
 
+> **Windows 실행 파일 다운로드:** <https://github.com/kaiytr/pdf_to_pptx/releases/latest/download/SlideBridge.exe>
+> — 단일 `.exe`, Python 설치 불필요, 약 75MB
+>
 > 웹 소개 페이지: <https://kaiytr.github.io/pdf_to_pptx/>
 
 ---
@@ -25,7 +28,7 @@ PDF 문서를 PowerPoint(`.pptx`)로 변환하는 Windows 데스크톱 프로그
 | 저장 위치 열기 / 원본 PDF 미리보기 | 완료 |
 | PPTX 생성 후 재오픈 검증 | 완료 |
 | 자동화 테스트 | 완료 (73개) |
-| Windows 실행 파일 패키징 | 스크립트만 제공, 빌드·실행 미검증 |
+| Windows 실행 파일 | 완료 (단일 exe 빌드·실행 확인, 클린 PC 미검증) |
 
 > **검증 환경**: Windows 11, Python 3.11.9, PySide6 6.9.3, PyMuPDF 1.26.7,
 > python-pptx 1.0.2, Pillow 13.0.0, pytest 9.1.1.
@@ -71,7 +74,17 @@ PDF 문서를 PowerPoint(`.pptx`)로 변환하는 Windows 데스크톱 프로그
 
 ## 3. 설치 및 실행
 
-### 3.1 요구 사항
+### 3.1 실행 파일로 실행 (권장)
+
+[Windows용 SlideBridge.exe 다운로드](https://github.com/kaiytr/pdf_to_pptx/releases/latest/download/SlideBridge.exe)
+
+- 단일 `.exe` 파일이며 Python 설치가 필요 없습니다.
+- Windows 10/11 64비트에서 실행하세요.
+- 서명되지 않은 파일이라 Windows SmartScreen 경고가 표시될 수 있습니다.
+  **추가 정보 → 실행**을 선택하면 됩니다.
+- 다운로드한 파일을 원하는 폴더에 두고 더블클릭하면 실행됩니다.
+
+### 3.2 소스에서 실행할 때의 요구 사항
 
 - Windows 10/11 (64비트)
 - Python 3.11 이상 권장 (개발 환경: 3.11.9)
@@ -80,7 +93,7 @@ PDF 문서를 PowerPoint(`.pptx`)로 변환하는 Windows 데스크톱 프로그
 > Python 3.12/3.13에서도 동작할 것으로 예상하지만, 이 저장소에서는 3.11.9로만
 > 검증했습니다. 3.8 이하에서는 동작하지 않습니다.
 
-### 3.2 설치
+### 3.3 소스 설치
 
 PowerShell에서 프로젝트 루트로 이동한 뒤:
 
@@ -99,7 +112,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-### 3.3 실행
+### 3.4 소스 실행
 
 ```powershell
 python main.py
@@ -111,7 +124,7 @@ python main.py
 .\.venv\Scripts\python.exe main.py
 ```
 
-### 3.4 사용 순서
+### 3.5 사용 순서
 
 1. PDF를 창에 끌어다 놓거나 **PDF 파일 선택**을 누릅니다.
 2. 파일명, 페이지 수, 용량, 페이지 크기와 분석 경고를 확인합니다.
@@ -269,12 +282,14 @@ python scripts/create_samples.py
 - 20페이지 샘플의 `1-5` 범위 변환 → 5장 생성
 - UI에서 파일 로드, 설정 변경, 변환, 완료 화면, 취소, 미리보기 동작 확인
 - 취소 시 출력 파일과 `.slidebridge_*.pptx` 임시 파일이 남지 않음
+- PyInstaller 단일 실행 파일(`dist\SlideBridge.exe`, 약 75MB) 빌드 및 실행 확인
+- 패키징 환경과 동일한 구성으로 PDF → PPTX 변환 스모크 테스트 통과
 
 **미검증 항목**
 
 - Microsoft PowerPoint 실제 실행 환경에서의 열기/렌더링
 - 원본 PDF와 변환 PPTX의 픽셀 단위 시각 비교
-- PyInstaller 실행 파일 빌드 및 배포
+- 다른 클린 PC에서의 실행 파일 실행 및 코드 서명/SmartScreen 동작
 - 5,000페이지급 초대형 문서, 4,000만 픽셀 초과 이미지의 실측
 
 ---
@@ -312,8 +327,8 @@ PDF는 시각적 표현을 저장하고 PPTX는 개별 객체를 저장하므로
   표시하며, 실제 결과 확인은 PowerPoint에서 해야 합니다.
 - 여러 파일을 한 번에 큐에 넣는 일괄 변환은 없습니다. **새 파일 변환**으로
   순차 처리합니다.
-- Windows 실행 파일 패키징 스크립트는 제공하지만 이 환경에서 빌드/실행을
-  검증하지 못했습니다.
+- Windows 실행 파일은 단일 exe로 빌드해 실행을 확인했지만, 다른 PC에서의
+  실행과 코드 서명은 검증하지 않았습니다.
 - 암호 PDF는 사용자가 입력한 암호로 열람 가능한 경우에만 변환합니다.
   권한 제한을 우회하지 않습니다.
 
@@ -326,10 +341,12 @@ PDF는 시각적 표현을 저장하고 PPTX는 개별 객체를 저장하므로
 ```
 
 - 가상환경과 개발 의존성(`requirements-dev.txt`)이 필요합니다.
-- 결과물: `dist\SlideBridge\SlideBridge.exe` (onedir)
+- 결과물: `dist\SlideBridge.exe` (단일 실행 파일)
 - PyMuPDF 리소스와 python-pptx 기본 템플릿을 함께 수집합니다.
-- **주의**: 이 스크립트는 작성만 되었고 실제 빌드·클린 PC 실행 테스트는
-  수행하지 않았습니다. 배포 전 반드시 별도 환경에서 확인하세요.
+- 빌드된 exe는 개발 PC에서 실행을 확인했고, 동일한 PyInstaller 구성의
+  변환 스모크 테스트도 통과했습니다.
+- **주의**: 다른 클린 PC에서의 실행과 코드 서명은 검증하지 않았습니다.
+  서명되지 않은 파일이라 SmartScreen 경고가 표시될 수 있습니다.
 
 ---
 
@@ -337,6 +354,7 @@ PDF는 시각적 표현을 저장하고 PPTX는 개별 객체를 저장하므로
 
 | 증상 | 확인 사항 |
 |---|---|
+| 실행 파일이 차단됨 | Windows SmartScreen에서 **추가 정보 → 실행**을 선택. 서명되지 않은 빌드입니다 |
 | `ModuleNotFoundError: PySide6` | 가상환경 활성화 후 `pip install -r requirements.txt` |
 | 창이 뜨지 않음 | 64비트 Python인지 확인, `python main.py`를 콘솔에서 실행해 오류 확인 |
 | `PDF 파일을 열 수 없습니다` | 손상/암호/확장자 확인. 암호 PDF는 프롬프트에서 입력 |

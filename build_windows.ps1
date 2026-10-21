@@ -1,6 +1,6 @@
-# Builds a Windows executable with PyInstaller.
-# This script is provided for packaging; the produced .exe was not visually
-# verified in the development environment (no PowerPoint/LibreOffice installed).
+# Builds a single-file Windows executable with PyInstaller.
+# The produced .exe was launched on the development machine, but has not been
+# tested on a clean PC or code-signed. (No PowerPoint/LibreOffice installed.)
 
 $ErrorActionPreference = "Stop"
 
@@ -18,6 +18,7 @@ if ($LASTEXITCODE -ne 0) { throw "Dependency installation failed." }
 & $python -m PyInstaller `
     --noconfirm `
     --clean `
+    --onefile `
     --windowed `
     --name SlideBridge `
     --collect-all pymupdf `
@@ -26,5 +27,5 @@ if ($LASTEXITCODE -ne 0) { throw "Dependency installation failed." }
 if ($LASTEXITCODE -ne 0) { throw "PyInstaller build failed." }
 
 Write-Host ""
-Write-Host "Build complete: $root\dist\SlideBridge\SlideBridge.exe"
+Write-Host "Build complete: $root\dist\SlideBridge.exe"
 Write-Host "Test the executable on a clean Windows machine before distribution."
