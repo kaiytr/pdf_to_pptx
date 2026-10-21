@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SlideBridge — PDF to PowerPoint</title>
+  <meta name="description" content="PDF를 원본 그대로 보존하거나 편집 가능한 PPTX로 변환하는 Windows 데스크톱 앱. PySide6, PyMuPDF, python-pptx로 제작했습니다.">
+  <meta property="og:title" content="SlideBridge — PDF to PowerPoint">
+  <meta property="og:description" content="원본 보존 모드와 편집 가능 모드를 모두 지원하는 PDF → PPTX 변환기.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://kaiytr.github.io/pdf_to_pptx/screenshot.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 이동</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="SlideBridge 홈">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="img">
+            <rect x="3" y="6" width="15" height="20" rx="3"></rect>
+            <rect x="14" y="10" width="15" height="16" rx="3"></rect>
+            <path d="M8 12h5M8 16h5M8 20h3M19 15h5M19 19h5M19 23h3"></path>
+          </svg>
+        </span>
+        <span>SlideBridge</span>
+      </a>
+      <nav class="nav" aria-label="주요 섹션">
+        <a href="#features">기능</a>
+        <a href="#modes">모드</a>
+        <a href="#install">설치</a>
+        <a href="#status">검증 상태</a>
+        <a class="nav-github" href="https://github.com/kaiytr/pdf_to_pptx" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="dot"></span> Windows 데스크톱 앱 · 오픈소스</p>
+          <h1>PDF를,<br><span class="accent">편집 가능한<br>PPTX로.</span></h1>
+          <p class="lede">
+            디자인을 그대로 살리는 <strong>원본 보존 모드</strong>와
+            텍스트·이미지를 개별 객체로 재구성하는 <strong>편집 가능 모드</strong>를
+            모두 지원합니다. 변환은 백그라운드에서 진행되어 UI가 멈추지 않습니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/kaiytr/pdf_to_pptx" target="_blank" rel="noreferrer">
+              GitHub에서 보기
+            </a>
+            <a class="button ghost" href="#install">설치 방법</a>
+          </div>
+          <dl class="stats" aria-label="프로젝트 요약">
+            <div><dt>변환 모드</dt><dd>2가지</dd></div>
+            <div><dt>자동화 테스트</dt><dd>73개 통과</dd></div>
+            <div><dt>샘플 PDF</dt><dd>7종</dd></div>
+          </dl>
+        </div>
+
+        <figure class="shot">
+          <div class="shot-bar" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <em>SlideBridge</em>
+          </div>
+          <img src="screenshot.png" alt="SlideBridge 메인 화면. PDF 선택 영역과 변환 설정 패널이 보입니다." width="1280" height="800">
+          <figcaption>실제 Windows 환경에서 캡처한 SlideBridge 메인 화면</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Features</p>
+          <h2>변환에 필요한 것만, 제대로.</h2>
+          <p>PDF를 불러오고, 옵션을 고르고, 저장하면 끝입니다.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="card">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 9h16M9 9v10"/></svg>
+            </span>
+            <h3>원본 보존 모드</h3>
+            <p>각 페이지를 150/300 DPI PNG로 렌더링해 슬라이드에 삽입합니다. 글꼴과 도형이 그대로 유지됩니다.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 7V4h16v3M12 4v16M8 20h8"/></svg>
+            </span>
+            <h3>편집 가능 모드</h3>
+            <p>텍스트, 이미지, 사각형·선·단순 경로를 추출해 PowerPoint에서 직접 수정할 수 있는 객체로 만듭니다.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM8 21h8M12 18v3"/></svg>
+            </span>
+            <h3>비율 · 해상도 · 범위</h3>
+            <p>원본 비율, 16:9, 4:3을 지원하고 페이지 범위를 지정할 수 있습니다. 내용은 잘리지 않고 여백으로 맞춰집니다.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/><path d="M9 12l2 2 4-5"/></svg>
+            </span>
+            <h3>안전한 저장</h3>
+            <p>임시 파일에 먼저 저장하고 ZIP/OPC 구조와 슬라이드 수를 검증한 뒤 최종 위치로 원자적 이동합니다.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg>
+            </span>
+            <h3>진행률 · 취소</h3>
+            <p>페이지 단위 진행률을 표시하고, 현재 페이지 처리가 끝난 뒤 안전하게 취소할 수 있습니다.</p>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3M12 14v2"/></svg>
+            </span>
+            <h3>암호 PDF</h3>
+            <p>암호가 필요한 PDF는 변환 전에 최대 3회까지 입력받습니다. 권한 제한을 우회하지 않습니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="modes" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Two modes</p>
+          <h2>용도에 따라 고르세요.</h2>
+          <p>기본값은 디자인 보존에 가장 안전한 원본 보존 모드입니다.</p>
+        </div>
+
+        <div class="mode-grid">
+          <article class="mode-card recommended">
+            <p class="mode-tag">기본</p>
+            <h3>원본 보존</h3>
+            <p class="mode-desc">페이지 전체를 이미지로 삽입합니다. 복잡한 디자인, 글꼴, 표, 도형을 가장 정확하게 유지합니다.</p>
+            <ul>
+              <li>텍스트 편집 불가</li>
+              <li>디자인·레이아웃 보존</li>
+              <li>스캔 문서에 적합</li>
+              <li>파일 용량이 커질 수 있음</li>
+            </ul>
+          </article>
+          <article class="mode-card">
+            <p class="mode-tag">편집용</p>
+            <h3>편집 가능</h3>
+            <p class="mode-desc">PDF 객체를 추출해 PowerPoint 도형과 텍스트 상자로 재구성합니다. 문구 수정과 이미지 교체에 적합합니다.</p>
+            <ul>
+              <li>텍스트·이미지 편집 가능</li>
+              <li>단순 도형·선 재구성</li>
+              <li>복잡한 그래픽은 근사 처리</li>
+              <li>글꼴은 PPTX에 포함되지 않음</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">변환 모드 비교</caption>
+            <thead>
+              <tr><th scope="col">항목</th><th scope="col">원본 보존</th><th scope="col">편집 가능</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">디자인 재현</th><td>매우 높음</td><td>지원 범위 내</td></tr>
+              <tr><th scope="row">텍스트 수정</th><td>불가</td><td>가능</td></tr>
+              <tr><th scope="row">이미지 교체</th><td>불가</td><td>가능</td></tr>
+              <tr><th scope="row">스캔 PDF</th><td>권장</td><td>이미지로 유지</td></tr>
+              <tr><th scope="row">파일 크기</th><td>큼</td><td>상대적으로 작음</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head compact">
+          <p class="eyebrow">Workflow</p>
+          <h2>네 단계면 끝.</h2>
+        </div>
+        <ol class="steps">
+          <li><span>01</span><h3>PDF 불러오기</h3><p>드래그 앤 드롭하거나 파일 선택 버튼을 누릅니다.</p></li>
+          <li><span>02</span><h3>옵션 설정</h3><p>모드, 비율, 해상도, 페이지 범위, 저장 위치를 정합니다.</p></li>
+          <li><span>03</span><h3>변환</h3><p>페이지 단위 진행률을 확인하고 필요하면 취소합니다.</p></li>
+          <li><span>04</span><h3>확인</h3><p>완료 화면에서 폴더를 열고 PowerPoint로 결과를 확인합니다.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="install" class="section section-alt">
+      <div class="container install-grid">
+        <div>
+          <p class="eyebrow">Getting started</p>
+          <h2>지금 실행해 보세요.</h2>
+          <p class="muted">
+            Windows 10/11 64비트와 Python 3.11 이상이 필요합니다.
+            개발 환경은 Python 3.11.9에서 검증했습니다.
+          </p>
+          <a class="button primary" href="https://github.com/kaiytr/pdf_to_pptx" target="_blank" rel="noreferrer">저장소 열기</a>
+        </div>
+        <div class="code-card">
+          <div class="code-head"><span>PowerShell</span><span class="code-dots" aria-hidden="true">● ● ●</span></div>
+<pre><code><span class="c"># 1. 저장소 복제</span>
+git clone https://github.com/kaiytr/pdf_to_pptx.git
+cd pdf_to_pptx
+
+<span class="c"># 2. 가상환경과 의존성 설치</span>
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+
+<span class="c"># 3. 실행</span>
+.\.venv\Scripts\python.exe main.py</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="status" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Verification</p>
+          <h2>검증된 것과, 아직 아닌 것.</h2>
+          <p>과장 없이 현재 상태를 공개합니다.</p>
+        </div>
+
+        <div class="status-grid">
+          <article class="status-card good">
+            <h3><span aria-hidden="true">✓</span> 검증 완료</h3>
+            <ul>
+              <li>자동화 테스트 73개 통과</li>
+              <li>샘플 PDF 7종 × 2모드 = PPTX 14개 생성·재오픈 검증</li>
+              <li>회전 페이지, 페이지 크기 혼합, 암호 PDF 처리</li>
+              <li>취소·부분 실패·임시 파일 정리</li>
+              <li>실제 Windows Qt 환경에서 GUI 실행·변환 확인</li>
+            </ul>
+          </article>
+          <article class="status-card warn">
+            <h3><span aria-hidden="true">!</span> 아직 미검증</h3>
+            <ul>
+              <li>Microsoft PowerPoint/LibreOffice에서의 실제 렌더링</li>
+              <li>원본 PDF와 결과 PPTX의 픽셀 단위 비교</li>
+              <li>PyInstaller 실행 파일 빌드 및 클린 PC 실행</li>
+              <li>5,000페이지급 초대형 문서 실측</li>
+            </ul>
+            <p class="status-note">
+              이 환경에 PowerPoint가 없어 생성 파일은 python-pptx 재오픈과
+              ZIP/OPC 구조 검증까지만 수행했습니다.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head compact">
+          <p class="eyebrow">Limitations</p>
+          <h2>알아두어야 할 한계.</h2>
+        </div>
+        <div class="limit-grid">
+          <div><h3>편집 가능 모드</h3><p>자간·커닝·기준선·bullet·다단 구성은 완전히 보존되지 않을 수 있습니다. 그라데이션, 투명도, 블렌드 모드, 클리핑 패스는 단순화됩니다.</p></div>
+          <div><h3>회전과 글꼴</h3><p>페이지 회전(/Rotate)은 반영하지만 개별 객체의 회전은 근사 처리됩니다. 글꼴은 PPTX에 포함되지 않아 대상 PC에 없으면 대체 글꼴이 사용됩니다.</p></div>
+          <div><h3>변환하지 않는 것</h3><p>주석, 링크, 폼 필드, 디지털 서명, 스크립트는 변환하지 않습니다. 스캔 문서는 OCR 없이 이미지로 유지됩니다.</p></div>
+          <div><h3>미리보기</h3><p>PPTX 미리보기는 제공하지 않습니다. 앱의 미리보기는 원본 PDF 페이지만 표시하며, 최종 결과는 PowerPoint에서 확인해야 합니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>PDF 변환, 이제 한 번에.</h2>
+          <p>소스 코드와 이슈는 GitHub에서 확인할 수 있습니다.</p>
+        </div>
+        <a class="button primary" href="https://github.com/kaiytr/pdf_to_pptx" target="_blank" rel="noreferrer">GitHub 저장소 →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p><strong>SlideBridge</strong> · PDF to PowerPoint</p>
+      <p class="muted">PySide6 · PyMuPDF · python-pptx · Pillow</p>
+      <p class="muted small">저장소에 별도 라이선스가 명시되어 있지 않습니다. 사용 전 저장소 소유자에게 확인하세요.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var header = document.querySelector(".site-header");
+      if (!header) return;
+      function sync() {
+        header.classList.toggle("scrolled", window.scrollY > 8);
+      }
+      sync();
+      window.addEventListener("scroll", sync, { passive: true });
+    })();
+  </script>
+</body>
+</html>

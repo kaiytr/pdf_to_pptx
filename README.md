@@ -6,6 +6,8 @@ PDF 문서를 PowerPoint(`.pptx`)로 변환하는 Windows 데스크톱 프로그
 
 ![SlideBridge 메인 화면](docs/screenshot.png)
 
+> 웹 소개 페이지: <https://kaiytr.github.io/pdf_to_pptx/>
+
 ---
 
 ## 1. 현재 구현 상태
